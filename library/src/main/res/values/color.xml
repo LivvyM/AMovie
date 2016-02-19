@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="search_layover_bg">#50000000</color>
+    <color name="gray_holo_dark">#ff464646</color>
+    <color name="gray_holo_light">#ffd0d0d0</color>
+    <color name="card_shadow">#D4D4D4</color>
+    <color name="black_overlay">#60000000</color>
+    <color name="white_overlay">#40FFFFFF</color>
+
+</resources>
