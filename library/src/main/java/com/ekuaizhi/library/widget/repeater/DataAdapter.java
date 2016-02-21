@@ -100,7 +100,5 @@ public interface DataAdapter {
      */
     void initEditModeData();
 
-    void notifySyncTagDataSet(boolean isTag);
 
-    boolean isTag();
 }

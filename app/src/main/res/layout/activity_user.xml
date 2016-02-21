@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/mImageUserBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/user_back_test_02"
+        />
+
+    <TextView
+        android:id="@+id/mTextUserNickName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_image_bottom"
+        android:text="一季樱花°落满江南"
+        android:textSize="24sp"
+        android:paddingTop="16dp"
+        android:paddingLeft="24dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/White"
+        android:layout_alignBottom="@+id/mImageUserBack"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mTextUserNickName"
+        android:background="@drawable/shadow_layout_full"
+        >
+
+    </RelativeLayout>
+
+</RelativeLayout>

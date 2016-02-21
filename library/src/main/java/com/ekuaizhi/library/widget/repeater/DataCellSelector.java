@@ -27,7 +27,7 @@ public abstract class DataCellSelector {
 	public final int getCellType(DataAdapter adapter, int position){
 		Class<?> cls = getCellClass(adapter, position);
 
-		for(int i=0; i<mCellClasses.length;i++){
+		for(int i=0; i < mCellClasses.length;i++){
 			if(mCellClasses[i].equals(cls)){
 				return i;
 			}

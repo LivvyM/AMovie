@@ -1,5 +1,7 @@
 package com.livvy.amovie.app;
 
+import android.content.Context;
+
 import com.ekuaizhi.library.base.BaseApp;
 import com.ekuaizhi.library.http.UnifyHttpClient;
 import com.ekuaizhi.library.log.LogLevel;
@@ -9,6 +11,7 @@ import com.livvy.amovie.R;
 import com.livvy.amovie.cell.DefaultCellProvider;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  *
@@ -35,6 +38,7 @@ public class AppClient extends BaseApp{
         // 设置当前项目的默认单元格样式
         DataListCellCenter.setDefaultCellProvider(new DefaultCellProvider());
 
+        //设置字体
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/HYQiHei_50.ttf")
                 .setFontAttrId(R.attr.fontPath)
@@ -44,5 +48,10 @@ public class AppClient extends BaseApp{
         //设置302问题跳转splash页面的action
 //        SplashManager.setSplashAction("com.ekuaizhi.kuaizhi.model_main.activity.SplashActivity");
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Grey_100"
@@ -7,18 +9,98 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingRight="12dp"
-        android:paddingLeft="12dp"
+        android:layout_height="160dp"
+        android:padding="12dp"
         android:background="@drawable/shadow_grey_line_bottom"
-        android:minHeight="?attr/actionBarSize">
+        >
+        <LinearLayout
+            android:id="@+id/mLayoutLeftHeadPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:paddingTop="8dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:background="@drawable/shape_oval_white"
+                />
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/shape_oval_white"
+                />
+            <View
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/shape_oval_white"
+                />
+        </LinearLayout>
 
         <ImageView
+            android:id="@+id/mImageSearch"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:background="@mipmap/icon_search_black"
-            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_search_black"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
+
+        <com.ekuaizhi.library.widget.CircleImageView
+            android:id="@+id/mImageUserHead"
+            android:layout_toRightOf="@+id/mLayoutLeftHeadPoint"
+            android:src="@mipmap/user_head_test_01"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="2dp"
+            />
+
+        <TextView
+            android:id="@+id/mTextTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16°"
+            android:layout_marginLeft="6dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textSize="40sp"
+            android:textColor="@color/Black"
+            fontPath="fonts/HYQiHei_50.ttf"
+            android:layout_below="@+id/mImageUserHead"
+            />
+
+        <TextView
+            android:id="@+id/mTextTips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:textSize="13sp"
+            android:layout_marginLeft="8dp"
+            fontPath="fonts/HYQiHei_50.ttf"
+            android:text="2月19日的无锡, 看电影要记得带伞哦～"
+            android:layout_below="@+id/mTextTemperature"
+            />
+        
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@mipmap/icon_weather_test"
+            android:layout_alignBottom="@+id/mTextTips"
+            android:layout_alignRight="@+id/mImageSearch"
+            android:layout_alignEnd="@+id/mImageSearch"
+            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp" />
     </RelativeLayout>
+
+    <com.ekuaizhi.library.widget.list.DataExpandListView
+        android:id="@+id/mExpandListMovies"
+        android:divider="#00000000"
+        android:clipToPadding="false"
+        android:drawSelectorOnTop="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:fastScrollEnabled="true"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -34,5 +34,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.baoyz.treasure:treasure:0.5.0'
     provided 'com.baoyz.treasure:treasure-compiler:0.5.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     compile project(':library')
 }

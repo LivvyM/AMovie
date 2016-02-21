@@ -1,6 +1,7 @@
 package com.ekuaizhi.library.widget.repeater;
 
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 
 import com.ekuaizhi.library.data.model.DataItem;

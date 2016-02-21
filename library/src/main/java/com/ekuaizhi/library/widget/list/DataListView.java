@@ -552,8 +552,4 @@ public class DataListView extends ListView implements DataView {
         setAllowAutoTurnPage(true);
     }
 
-    @Override
-    public void notifySyncTagDataSet(boolean isTag) {
-        mDataAdapter.notifySyncTagDataSet(isTag);
-    }
 }

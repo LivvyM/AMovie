@@ -14,32 +14,11 @@ import android.widget.TextView;
 import com.ekuaizhi.library.data.model.DataItem;
 import com.ekuaizhi.library.util.DeviceUtil;
 
-
 /**
- * 单元格复用抽象类：视图、数据和ViewHolder的合集。
- * <p/>
- * 1.继承和使用时的重要约束：
- * 这个类的子类的构造方法不允许带参数，否则将不会被调用。
- * 其子类可以是独立类、静态化类或在 DataView/DataAdapter/Activity/DataCellSelector 对象中写的内部类。
- * 其他对象中的单元格内部类在指定时需要把对象作为默认实例化参数传进去，详见 DataListView 的 setMoreCellClass/setDataCellSelector/setDataCellClass/setErrorCellClass/setEmptyCellClass 等方法的说明。
- * <p/>
- * 2.子类中需要实现的方法为：
- * (1) createCellView 或 getCellViewLayoutID (只会调用一次)
- * (2) bindView (只会调用一次)
- * (3) bindData
- * <p/>
- * 2.创建时方法的调用顺序：
- * initAdapterAndCellViewForOnce
- * ->updateCellData
- * ->createCellView/getCellViewLayoutID
- * ->bindView
- * ->bindData
- * <p/>
- * 3.复用时方法的调用顺序：
- * updateCellData
- * ->bindData
+ * Created by livvy on 2/20/16.
  */
-public abstract class DataCell {
+public abstract class DataExpandCell {
+
     /**
      * 单元格所在 DataListView 对应的 adapter
      * 这个值在 bindData 和  bindView 方法调用时，是不可能为空的
@@ -55,12 +34,17 @@ public abstract class DataCell {
     private View mCellView;
 
     /**
+     * 单元格Expand对应的View
+     *
+     */
+    private View mExpandView;
+
+    /**
      * 单元格对应的位置。
      * 这个值因为单元格复用的关系，其值会变化。
      * 但是在 bindData 调用前，其值会被预先设置好，所以在 bindData 方法中它可以放心使用。
      */
     protected int mPosition;
-
     /**
      * 单元格对应的数据。
      * 这个值因为单元格复用的关系，其值会变化。
@@ -107,6 +91,13 @@ public abstract class DataCell {
             } else {
                 mCellView = createCellView();
             }
+
+            int expandID = getExpandCellViewLayoutID();
+            if(expandID != 0){
+                mExpandView = LayoutInflater.from(adapter.getContext()).inflate(expandID, null);
+            }else {
+                mExpandView = createCellView();
+            }
         } catch (Throwable e) {
         }
 
@@ -117,12 +108,15 @@ public abstract class DataCell {
 
         // 设置单元格关系
         mCellView.setTag(this);
+        mExpandView.setTag(this);
 
         // 绑定单元格视图
         bindView();
+        bindExpandView();
 
         // 绑定单元格视图
         bindData();
+        bindExpandData();
     }
 
     /**
@@ -186,13 +180,17 @@ public abstract class DataCell {
         return mCellView;
     }
 
+    public View getExpandView(){
+        return mExpandView;
+    }
+
     /**
      * 通过控件ID来查找单元格上的控件
      *
      * @return View
      */
-    public  View findViewById(int id) {
-        return mCellView.findViewById(id);
+    public  View findViewById(View view ,int id) {
+        return view.findViewById(id);
     }
 
     /**
@@ -212,14 +210,34 @@ public abstract class DataCell {
     public abstract int getCellViewLayoutID();
 
     /**
+     * 获取单元格Expand对应的 LayoutID
+     *
+     */
+    public abstract int getExpandCellViewLayoutID();
+
+    /**
      * 绑定单元格视图中的控件到变量
      * 该方法由子类实现
      */
     public abstract void bindView();
+
+    public abstract void bindExpandView();
 
     /**
      * 绑定单元格数据到控件
      * 该方法由子类实现
      */
     public abstract void bindData();
+
+    public abstract void bindExpandData();
+
+
+    public abstract int getPositionForSection(int sectionIndex);
+
+    public abstract int getSectionForPosition(int position);
+
+    public abstract Object[] getSections();
+
+    public abstract long getHeaderId(int position);
+
 }

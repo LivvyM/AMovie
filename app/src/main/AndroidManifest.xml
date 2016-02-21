@@ -31,9 +31,6 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.permission.READ_FRAME_BUFFER" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
@@ -44,12 +41,21 @@
         android:hardwareAccelerated = "false"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name=".activity.MainActivity" >
+        <activity android:name=".activity.MainActivity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.UserActivity" android:launchMode="singleTask">
+
+        </activity>
+
+
+        <activity android:name=".activity.SettingActivity" >
+
         </activity>
     </application>
 

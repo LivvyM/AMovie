@@ -5,11 +5,10 @@ import android.view.View;
 import java.lang.reflect.Constructor;
 
 /**
- * 单元格组织者
- * <p/>
- * 管理某一类型数据对应的单元格类型和单元格的实例化控制
+ * Created by livvy on 2/20/16.
  */
-public final class DataCellOrganizer {
+public class DataExpandCellOrganizer {
+
     private DataAdapter mAdapter = null;
     private Class<?> mCellClass = null;
     private DataCellSelector mCellSelector = null;
@@ -21,7 +20,7 @@ public final class DataCellOrganizer {
      * @param adapter   对应的数据适配器
      * @param cellClass 对应的单元格固定类名
      */
-    public DataCellOrganizer(DataAdapter adapter, Class<?> cellClass) {
+    public DataExpandCellOrganizer(DataAdapter adapter, Class<?> cellClass) {
         mAdapter = adapter;
         mCellClass = cellClass;
         mCellSelector = null;
@@ -34,7 +33,7 @@ public final class DataCellOrganizer {
      * @param adapter           对应的数据适配器
      * @param cellClassSelector 对应的单元格类名选择器
      */
-    public DataCellOrganizer(DataAdapter adapter, DataCellSelector cellClassSelector) {
+    public DataExpandCellOrganizer(DataAdapter adapter, DataCellSelector cellClassSelector) {
         mAdapter = adapter;
         mCellClass = null;
         mCellSelector = cellClassSelector;
@@ -48,7 +47,7 @@ public final class DataCellOrganizer {
      * @param cls 单元格类名
      */
     public final void setCellClass(Class<?> cls, Object cellClassConstructorParameter) {
-        if (null != cls && DataCell.class.isAssignableFrom(cls)) {
+        if (null != cls && DataExpandCell.class.isAssignableFrom(cls)) {
             Class<?> oldCls = mCellClass;
             mCellClass = cls;
             mCellSelector = null;
@@ -126,15 +125,15 @@ public final class DataCellOrganizer {
     public final View getCellView(View cellCachedView, int position) {
         if (null != cellCachedView) {
             Object tag = cellCachedView.getTag();
-            if (tag instanceof DataCell) {
-                DataCell cell = (DataCell) tag;
+            if (tag instanceof DataExpandCell) {
+                DataExpandCell cell = (DataExpandCell) tag;
                 cell.updateCellData(position);
                 cell.bindData();
                 return cell.getCellView();
             }
         }
 
-        DataCell cell = createCell(position);
+        DataExpandCell cell = createCell(position);
         if (null == cell) {
             return null;
         }
@@ -144,12 +143,71 @@ public final class DataCellOrganizer {
 
 
     /**
+     * ExpandCellView 获取expand对应的单元格视图
+     *
+     * @return View 返回指定位置单元格对应的视图
+     */
+    public final View getExpandCellView(View view,int position){
+        if (null != view) {
+            Object tag = view.getTag();
+            if (tag instanceof DataExpandCell) {
+                DataExpandCell cell = (DataExpandCell) tag;
+                cell.updateCellData(position);
+                cell.bindExpandData();
+                return cell.getExpandView();
+            }
+        }
+
+        DataExpandCell cell = createCell(position);
+        if (null == cell) {
+            return null;
+        }
+
+        return cell.getExpandView();
+    }
+
+    public final int getPositionForSection(int sectionIndex){
+        //todo 问题未解决
+        DataExpandCell cell = createCell(sectionIndex);
+        if (null == cell) {
+            return 0;
+        }
+        return cell.getPositionForSection(sectionIndex);
+    }
+
+    public final int getSectionForPosition(int position){
+        //todo 问题未解决
+        DataExpandCell cell = createCell(position);
+        if (null == cell) {
+            return 0;
+        }
+        return cell.getSectionForPosition(position);
+    }
+
+    public final Object[] getSections(){
+        //todo 问题未解决
+        DataExpandCell cell = createCell(0);
+        if (null == cell) {
+            return null;
+        }
+        return cell.getSections();
+    }
+
+    public final long getHeaderId(int position){
+        //todo 问题未解决
+        DataExpandCell cell = createCell(position);
+        if (null == cell) {
+            return 0;
+        }
+        return cell.getHeaderId(position);
+    }
+
+    /**
      * 创建指定位置对应的单元格
      */
-    private DataCell createCell(int position) {
+    private DataExpandCell createCell(int position) {
         Class<?> cellClass = getCellClass(position);
-        DataCell cell = createCellFromClass(cellClass);
-
+        DataExpandCell cell = createCellFromClass(cellClass);
         if (null == cell) {
             return null;
         }
@@ -157,7 +215,6 @@ public final class DataCellOrganizer {
         cell.initAdapterAndCellViewForOnce(mAdapter, position);
         return cell;
     }
-
 
     /**
      * 从指定的类名中实例化单元格
@@ -167,8 +224,8 @@ public final class DataCellOrganizer {
      * @param cls 指定的单元格类名
      * @return DataCell 实例化成功的单元格
      */
-    private DataCell createCellFromClass(Class<?> cls) {
-        if (!DataCell.class.isAssignableFrom(cls)) {
+    private DataExpandCell createCellFromClass(Class<?> cls) {
+        if (!DataExpandCell.class.isAssignableFrom(cls)) {
             return null;
         }
 
@@ -176,7 +233,7 @@ public final class DataCellOrganizer {
         Constructor<?> cons[] = cls.getDeclaredConstructors();
         if (null == cons || cons.length < 1) { // 无构造方法，则直接实例化类
             try {
-                return (DataCell) cls.newInstance();
+                return (DataExpandCell) cls.newInstance();
             } catch (Throwable e) {
             }
         } else {
@@ -198,12 +255,12 @@ public final class DataCellOrganizer {
                 //
                 if (paramClasses.length < 1) {
                     try {
-                        return (DataCell) con.newInstance();
+                        return (DataExpandCell) con.newInstance();
                     } catch (Throwable e) {
                     }
                 } else if (1 == paramClasses.length) {
                     Class<?> paramCls = paramClasses[0];
-                    DataCell cell;
+                    DataExpandCell cell;
 
                     // 函数参数：自定义
                     cell = newCellWithOneParam(con, paramCls, mCellClassConstructorParameter);
@@ -233,7 +290,7 @@ public final class DataCellOrganizer {
                     }
                 } else {
                     if (2 == paramClasses.length && null != mCellClassConstructorParameter) { // 两个参数的第二个参数必须为自定义参数
-                        DataCell cell;
+                        DataExpandCell cell;
                         Class<?> paramCls1 = paramClasses[0];
                         Class<?> paramCls2 = paramClasses[1];
 
@@ -274,7 +331,7 @@ public final class DataCellOrganizer {
     /**
      * 初始化构造函数为两个参数的单元格实例
      */
-    private DataCell newCellWithTwoParam(Constructor<?> con, Class<?> firstParamClass, Class<?> secondParamClass, Object paramObject) {
+    private DataExpandCell newCellWithTwoParam(Constructor<?> con, Class<?> firstParamClass, Class<?> secondParamClass, Object paramObject) {
         if (null == mCellClassConstructorParameter) {
             return null;
         }
@@ -285,7 +342,7 @@ public final class DataCellOrganizer {
 
         if (firstParamClass.isAssignableFrom(paramObject.getClass()) && secondParamClass.isAssignableFrom(mCellClassConstructorParameter.getClass())) {
             try {
-                return (DataCell) con.newInstance(paramObject, mCellClassConstructorParameter);
+                return (DataExpandCell) con.newInstance(paramObject, mCellClassConstructorParameter);
             } catch (Throwable e) {
             }
         }
@@ -296,17 +353,18 @@ public final class DataCellOrganizer {
     /**
      * 初始化构造函数为一个参数的单元格实例
      */
-    private DataCell newCellWithOneParam(Constructor<?> con, Class<?> firstParamClass, Object paramObject) {
+    private DataExpandCell newCellWithOneParam(Constructor<?> con, Class<?> firstParamClass, Object paramObject) {
         if (null == paramObject || null == con || null == firstParamClass) {
             return null;
         }
 
         if (firstParamClass.isAssignableFrom(paramObject.getClass())) {
             try {
-                return (DataCell) con.newInstance(paramObject);
+                return (DataExpandCell) con.newInstance(paramObject);
             } catch (Throwable e) {
             }
         }
         return null;
     }
+
 }

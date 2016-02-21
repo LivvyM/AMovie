@@ -3,6 +3,7 @@
     <color name="colorPrimary">#FFD900</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="White">#FFFFFF</color>
     <color name="Grey_400">#bdbdbd</color>
     <color name="Grey_200">#eeeeee</color>
     <color name="Grey_700">#616161</color>
@@ -12,4 +13,6 @@
     <color name="Grey_600">#757575</color>
     <color name="Grey_800">#424242</color>
 
+    <color name="Dark">#0d0d1e</color>
+    <color name="Black">#000000</color>
 </resources>

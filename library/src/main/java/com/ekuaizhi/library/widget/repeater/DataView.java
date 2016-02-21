@@ -100,9 +100,4 @@ public interface DataView {
      */
     void callEventsAfterLoadData(@NonNull DataAdapter adapter);
 
-    /**
-     * 单元个标志位，判断页面刷新的状态
-     */
-    void notifySyncTagDataSet(boolean isTag);
-
 }

@@ -111,15 +111,6 @@ public class DataViewAdapter implements DataAdapter{
     public void initEditModeData() {
     }
 
-    @Override
-    public void notifySyncTagDataSet(boolean isTag) {
-    }
-
-    @Override
-    public boolean isTag() {
-        return false;
-    }
-
     public interface refreshData{
         void refresh(String url, HashMap<String,String> params);
     }

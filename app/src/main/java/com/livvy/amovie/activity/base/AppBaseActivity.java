@@ -17,12 +17,6 @@ public abstract class AppBaseActivity extends BaseActivity{
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         setStatusColor(ColorUtil.COLOR_PRIMARY);
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            //透明状态栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            //透明导航栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
     }
 
     protected void setStatusColor(int color) {
