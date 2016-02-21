@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 
@@ -119,6 +120,7 @@ public class DataExpandListView extends StickyListHeadersListView implements Dat
 
     @Override
     public void setDataAdapter(DataAdapter adapter) {
+        Log.e("=====","setDataAdapter");
         if (adapter instanceof DataExpandListAdapter) {
             mDataAdapter = (DataExpandListAdapter) adapter;
             setAdapter(mDataAdapter);

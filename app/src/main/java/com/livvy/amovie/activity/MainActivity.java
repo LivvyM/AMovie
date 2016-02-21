@@ -35,7 +35,7 @@ public class MainActivity extends AppBaseActivity {
 
         mExpandListMovies.setDataCellClass(MovieDetailCell.class);
         mExpandListMovies.setDataLoader((adapter, pageAt, pageSize) -> {
-            return presenter.getMovieDetailList();
+            return presenter.getMovieDetailList(15,pageAt);
         },true);
     }
 

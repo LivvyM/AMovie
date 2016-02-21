@@ -1,5 +1,6 @@
 package com.ekuaizhi.library.widget.repeater;
 
+import android.util.Log;
 import android.view.View;
 
 import java.lang.reflect.Constructor;
@@ -53,9 +54,10 @@ public class DataExpandCellOrganizer {
             mCellSelector = null;
             mCellClassConstructorParameter = cellClassConstructorParameter;
 
-            if (oldCls != cls) {
-                mAdapter.getDataView().setDataAdapter(mAdapter);
-            }
+//            if (oldCls != cls) {
+//                Log.e("=====","setCellClass,setDataAdapter");
+//                mAdapter.getDataView().setDataAdapter(mAdapter);
+//            }
         }
     }
 
@@ -68,10 +70,11 @@ public class DataExpandCellOrganizer {
         DataCellSelector oldSelector = mCellSelector;
         mCellSelector = selector;
         mCellClassConstructorParameter = cellClassConstructorParameter;
-
-        if (oldSelector != selector) {
-            mAdapter.getDataView().setDataAdapter(mAdapter);
-        }
+//
+//        if (oldSelector != selector) {
+//            Log.e("=====","setCellSelector,setDataAdapter");
+//            mAdapter.getDataView().setDataAdapter(mAdapter);
+//        }
     }
 
     /**

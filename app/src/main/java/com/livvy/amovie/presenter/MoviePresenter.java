@@ -14,7 +14,7 @@ public class MoviePresenter {
         movieModel = new MovieModel();
     }
 
-    public DataResult getMovieDetailList(){
-        return movieModel.getMovieDetailList();
+    public DataResult getMovieDetailList(int size,int page){
+        return movieModel.getMovieDetailList(size,page -1);
     }
 }

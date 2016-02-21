@@ -76,7 +76,11 @@ public class MovieDetailCell extends DataExpandCell{
 
     @Override
     public void bindExpandData() {
-        mTextExpandTime.setText(mDatas.get(mPosition).getString("movieTime"));
+        try{
+            mTextExpandTime.setText(mDatas.get(mPosition).getString("movieTime"));
+        }catch (Throwable throwable){
+        }
+
     }
 
     @Override
@@ -102,13 +106,12 @@ public class MovieDetailCell extends DataExpandCell{
 
     @Override
     public int getPositionForSection(int sectionIndex) {
-        Log.e("getPositionForSection","" + sectionIndex);
         return mSectionIndices.get(sectionIndex);
+
     }
 
     @Override
     public int getSectionForPosition(int position) {
-        Log.e("getSectionForPosition","" + position);
         for (int i = 0; i < mSectionIndices.size(); i++) {
             if (position < mSectionIndices.get(i)) {
                 return i - 1;
@@ -119,7 +122,6 @@ public class MovieDetailCell extends DataExpandCell{
 
     @Override
     public Object[] getSections() {
-        Log.e("getSections","getSections");
         String[] letter = new String[mSectionLetters.size()];
         for (int i = 0;i < mSectionLetters.size();i++){
             letter[i] = mSectionLetters.get(i);
@@ -129,18 +131,17 @@ public class MovieDetailCell extends DataExpandCell{
 
     @Override
     public long getHeaderId(int position) {
-        Log.e("getHeaderId","" + position);
-        return mDatas.get(position).getString("movieTime").charAt(5);
+        return mDatas.get(position).getString("movieTime").charAt(0);
     }
 
     private List<Integer> getSectionIndices() {
-        ArrayList<Integer> sectionIndices = new ArrayList<>();
-        String timeString = mDatas.get(0).getString("movieTime");
+        ArrayList<Integer> sectionIndices = new ArrayList<Integer>();
+        char lastFirstChar = mDatas.get(0).getString("movieTime").charAt(0);
         sectionIndices.add(0);
-        for (int i = 0; i < mDatas.size(); i++) {
-            if (!timeString.equals(mDatas.get(i).getString("movieTime"))) {
-                timeString = mDatas.get(i).getString("movieTime");
-                sectionIndices.add(i + 1);
+        for (int i = 1; i < mDatas.size(); i++) {
+            if (mDatas.get(i).getString("movieTime").charAt(0) != lastFirstChar) {
+                lastFirstChar = mDatas.get(i).getString("movieTime").charAt(0);
+                sectionIndices.add(i);
             }
         }
         return sectionIndices;
@@ -149,7 +150,7 @@ public class MovieDetailCell extends DataExpandCell{
     private List<String> getSectionLetters() {
         List<String> letter = new ArrayList<>();
         for (int i = 0; i < mSectionIndices.size(); i++) {
-            letter.add(mDatas.get(mSectionIndices.get(i)).getString("movieTime"));
+            letter.add(mDatas.get(mSectionIndices.get(i)).getString("movieTime").substring(0,2));
         }
         return letter;
     }

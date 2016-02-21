@@ -1,5 +1,6 @@
 package com.ekuaizhi.library.widget.repeater;
 
+import android.util.Log;
 import android.view.View;
 
 import java.lang.reflect.Constructor;
@@ -55,6 +56,7 @@ public final class DataCellOrganizer {
             mCellClassConstructorParameter = cellClassConstructorParameter;
 
             if (oldCls != cls) {
+                Log.e("=====","sdsdsdsd setCellClass,setDataAdapter");
                 mAdapter.getDataView().setDataAdapter(mAdapter);
             }
         }

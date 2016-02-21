@@ -2,6 +2,7 @@ package com.ekuaizhi.library.widget.list;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -426,6 +427,7 @@ public class DataExpandListAdapter extends BaseAdapter implements AdapterView.On
 
     @Override
     public int getSectionForPosition(int position) {
+        Log.e("==DataExpandAdapter==","getSectionForPosition");
         DataExpandCellOrganizer organizer = getItemOrganizer(position);
         return organizer.getSectionForPosition(position);
     }
