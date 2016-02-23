@@ -287,9 +287,9 @@ public class DataExpandListAdapter extends BaseAdapter implements AdapterView.On
             super.notifyDataSetChanged();
 
 //            // 自动计算 listView 的高度； 放在这里看上去有点不妥，但是没有收到问题反馈
-//            if (mListView.getEnableAutoHeight()) {
-//                mListView.autoSetHeight();
-//            }
+            if (mListView.getEnableAutoHeight()) {
+                mListView.autoSetHeight();
+            }
         }
 
         // 备注：

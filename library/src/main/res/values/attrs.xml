@@ -91,5 +91,10 @@
         <attr name="hasStickyHeaders" format="boolean" />
         <attr name="isDrawingListUnderStickyHeader" format="boolean" />
     </declare-styleable>
+    
+    <declare-styleable name="DataListView">
+        <attr name="isHeaderView" format="boolean"/>
+        <attr name="setHeaderView" format="integer"/>
+    </declare-styleable>
 
 </resources>

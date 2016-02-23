@@ -25,166 +25,169 @@ public class MovieModel {
 
 
         DataResult result = new DataResult();
+        DataItem item;
+        int startPos = (page - 1) * size;
+
         result.hasError = false;
-        result.totalcount = 100;
+        result.totalcount = 16;
 
-        Log.e("==size==","size:" + size);
-        Log.e("==page==","page:" + page);
+//        // 模拟构造网络加载的数据
+//        for (int i = 0; i < 10; i++) {
+//            int jobnum = startPos + i + 1;
+//
+//            item = new DataItem();
+//            item.setString("movieTime","AAAA" + jobnum);
+//            item.setString("movieName"," 西游记之大圣归来" + i);
+//            item.setString("movieEnglishName","Monkey King: Hero is Back");
+//            item.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
+//            item.setString("movieImport","田晓鹏导演");
+//            item.setString("movieForward","1314人期待");
+//            result.addItem(item);
+//        }
 
-        for(int i = 0;i < size; i++){
-            DataItem dataItem = new DataItem();
-            dataItem.setString("movieTime","A" + size * page + i);
-            dataItem.setString("movieName"," 西游记之大圣归来" + i);
-            dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
-            dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
-            dataItem.setString("movieImport","田晓鹏导演");
-            dataItem.setString("movieForward","1314人期待");
-            result.addItem(dataItem);
-        }
+        DataItem dataItem = new DataItem();
+        dataItem.setString("movieTime","AAAAAAA");
+        dataItem.setString("movieName"," 西游记之大圣归来");
+        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
+        dataItem.setString("movieImport","田晓鹏导演");
+        dataItem.setString("movieForward","1314人期待");
+        result.addItem(dataItem);
 
-//        DataItem dataItem = new DataItem();
-//        dataItem.setString("movieTime","AAAAAAA");
-//        dataItem.setString("movieName"," 西游记之大圣归来");
-//        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
-//        dataItem.setString("movieImport","田晓鹏导演");
-//        dataItem.setString("movieForward","1314人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","AAAAAAA");
-//        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
-//        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
-//        dataItem.setString("movieImport","山下宏幸导演");
-//        dataItem.setString("movieForward","2245人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","AAAAAAA");
-//        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
-//        dataItem.setString("movieEnglishName","From Vegas To Macau III");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
-//        dataItem.setString("movieImport","刘伟强/王晶导演");
-//        dataItem.setString("movieForward","213人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","AAAAAAA");
-//        dataItem.setString("movieName"," 星球大战7：原力觉醒");
-//        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
-//        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
-//        dataItem.setString("movieForward","1114人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","BBBBBBBB");
-//        dataItem.setString("movieName"," 西游记之大圣归来");
-//        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
-//        dataItem.setString("movieImport","田晓鹏导演");
-//        dataItem.setString("movieForward","1314人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","BBBBBBB");
-//        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
-//        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
-//        dataItem.setString("movieImport","山下宏幸导演");
-//        dataItem.setString("movieForward","2245人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","BBBBBBBB");
-//        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
-//        dataItem.setString("movieEnglishName","From Vegas To Macau III");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
-//        dataItem.setString("movieImport","刘伟强/王晶导演");
-//        dataItem.setString("movieForward","213人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","BBBBBBBB");
-//        dataItem.setString("movieName"," 星球大战7：原力觉醒");
-//        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
-//        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
-//        dataItem.setString("movieForward","1114人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","CCCCCCC");
-//        dataItem.setString("movieName"," 西游记之大圣归来");
-//        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
-//        dataItem.setString("movieImport","田晓鹏导演");
-//        dataItem.setString("movieForward","1314人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","CCCCCCC");
-//        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
-//        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
-//        dataItem.setString("movieImport","山下宏幸导演");
-//        dataItem.setString("movieForward","2245人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","CCCCCCC");
-//        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
-//        dataItem.setString("movieEnglishName","From Vegas To Macau III");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
-//        dataItem.setString("movieImport","刘伟强/王晶导演");
-//        dataItem.setString("movieForward","213人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","CCCCCCC");
-//        dataItem.setString("movieName"," 星球大战7：原力觉醒");
-//        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
-//        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
-//        dataItem.setString("movieForward","1114人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","DDDDDDD");
-//        dataItem.setString("movieName"," 西游记之大圣归来");
-//        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
-//        dataItem.setString("movieImport","田晓鹏导演");
-//        dataItem.setString("movieForward","1314人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","DDDDDDD");
-//        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
-//        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
-//        dataItem.setString("movieImport","山下宏幸导演");
-//        dataItem.setString("movieForward","2245人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","DDDDDDD");
-//        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
-//        dataItem.setString("movieEnglishName","From Vegas To Macau III");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
-//        dataItem.setString("movieImport","刘伟强/王晶导演");
-//        dataItem.setString("movieForward","213人期待");
-//        result.addItem(dataItem);
-//
-//        dataItem = new DataItem();
-//        dataItem.setString("movieTime","DDDDDDD");
-//        dataItem.setString("movieName"," 星球大战7：原力觉醒");
-//        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
-//        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
-//        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
-//        dataItem.setString("movieForward","1114人期待");
-//        result.addItem(dataItem);
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","AAAAAAA");
+        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
+        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
+        dataItem.setString("movieImport","山下宏幸导演");
+        dataItem.setString("movieForward","2245人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","AAAAAAA");
+        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
+        dataItem.setString("movieEnglishName","From Vegas To Macau III");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
+        dataItem.setString("movieImport","刘伟强/王晶导演");
+        dataItem.setString("movieForward","213人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","AAAAAAA");
+        dataItem.setString("movieName"," 星球大战7：原力觉醒");
+        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
+        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
+        dataItem.setString("movieForward","1114人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","BBBBBBBB");
+        dataItem.setString("movieName"," 西游记之大圣归来");
+        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
+        dataItem.setString("movieImport","田晓鹏导演");
+        dataItem.setString("movieForward","1314人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","BBBBBBB");
+        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
+        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
+        dataItem.setString("movieImport","山下宏幸导演");
+        dataItem.setString("movieForward","2245人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","BBBBBBBB");
+        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
+        dataItem.setString("movieEnglishName","From Vegas To Macau III");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
+        dataItem.setString("movieImport","刘伟强/王晶导演");
+        dataItem.setString("movieForward","213人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","BBBBBBBB");
+        dataItem.setString("movieName"," 星球大战7：原力觉醒");
+        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
+        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
+        dataItem.setString("movieForward","1114人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","CCCCCCC");
+        dataItem.setString("movieName"," 西游记之大圣归来");
+        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
+        dataItem.setString("movieImport","田晓鹏导演");
+        dataItem.setString("movieForward","1314人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","CCCCCCC");
+        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
+        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
+        dataItem.setString("movieImport","山下宏幸导演");
+        dataItem.setString("movieForward","2245人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","CCCCCCC");
+        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
+        dataItem.setString("movieEnglishName","From Vegas To Macau III");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
+        dataItem.setString("movieImport","刘伟强/王晶导演");
+        dataItem.setString("movieForward","213人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","CCCCCCC");
+        dataItem.setString("movieName"," 星球大战7：原力觉醒");
+        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
+        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
+        dataItem.setString("movieForward","1114人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","DDDDDDD");
+        dataItem.setString("movieName"," 西游记之大圣归来");
+        dataItem.setString("movieEnglishName","Monkey King: Hero is Back");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_01);
+        dataItem.setString("movieImport","田晓鹏导演");
+        dataItem.setString("movieForward","1314人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","DDDDDDD");
+        dataItem.setString("movieName"," 火影忍者剧场版:博人传");
+        dataItem.setString("movieEnglishName","Boruto: Naruto the Movie");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_02);
+        dataItem.setString("movieImport","山下宏幸导演");
+        dataItem.setString("movieForward","2245人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","DDDDDDD");
+        dataItem.setString("movieName"," 澳门风云3 賭城風雲III");
+        dataItem.setString("movieEnglishName","From Vegas To Macau III");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_03);
+        dataItem.setString("movieImport","刘伟强/王晶导演");
+        dataItem.setString("movieForward","213人期待");
+        result.addItem(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setString("movieTime","DDDDDDD");
+        dataItem.setString("movieName"," 星球大战7：原力觉醒");
+        dataItem.setString("movieEnglishName","Star Wars: The Force Awakens");
+        dataItem.setInt("moviePhoto", R.mipmap.image_home_movie_test_04);
+        dataItem.setString("movieImport","J·J·艾布拉姆斯导演");
+        dataItem.setString("movieForward","1114人期待");
+        result.addItem(dataItem);
 
         return result;
     }

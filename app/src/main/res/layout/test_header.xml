@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:id="@+id/mHomeHeaderView"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:padding="12dp"
+        android:background="@drawable/shadow_grey_line_bottom"
+        >
+
+        <TextView
+            android:id="@+id/mTextTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16°"
+            android:layout_marginLeft="6dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="12dp"
+            android:textSize="40sp"
+            android:textColor="@color/Black"
+            fontPath="fonts/HYQiHei_50.ttf"
+            android:layout_below="@+id/mImageUserHead"
+            />
+
+        <TextView
+            android:id="@+id/mTextTips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:textSize="13sp"
+            android:layout_marginLeft="8dp"
+            fontPath="fonts/HYQiHei_50.ttf"
+            android:text="2月19日的无锡, 看电影要记得带伞哦～"
+            android:layout_below="@+id/mTextTemperature"
+            />
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@mipmap/icon_weather_test"
+            android:layout_above="@+id/mTextTips"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>

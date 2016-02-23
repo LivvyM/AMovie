@@ -1,7 +1,10 @@
 package com.livvy.amovie.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AbsListView;
 
+import com.ekuaizhi.library.util.DeviceUtil;
 import com.ekuaizhi.library.widget.list.DataExpandListView;
 import com.livvy.amovie.R;
 import com.livvy.amovie.activity.base.AppBaseActivity;
@@ -32,7 +35,7 @@ public class MainActivity extends AppBaseActivity {
 
     private void initView(){
         mExpandListMovies = (DataExpandListView)findViewById(R.id.mExpandListMovies);
-
+        mExpandListMovies.setHeaderView(R.layout.test_header);
         mExpandListMovies.setDataCellClass(MovieDetailCell.class);
         mExpandListMovies.setDataLoader((adapter, pageAt, pageSize) -> {
             return presenter.getMovieDetailList(15,pageAt);
