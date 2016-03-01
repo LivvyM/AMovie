@@ -28,9 +28,7 @@ public class MainActivity extends AppBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         presenter = new MoviePresenter();
-
         initView();
-
     }
 
     private void initView(){
